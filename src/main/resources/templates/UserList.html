@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="vendor/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="vendor/js/jquery-3.1.1.js"></script>
+    <script src="js/UserFinder.js"></script>
+    <title>List of Users</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row margined-row">
+            <div class="col-md-12 center-text">
+                <h1>Пользователи</h1>
+            </div>
+        </div>
+
+        <div class="row margined-row">
+            <!-- Строка поиска -->
+            <div class="col-md-3"></div>
+            <div class="col-md-5">
+                <input type="text" class="form-control" id="search-input" name="search-input" placeholder="Введите логин пользователя"/>
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-default" id="find-users">Найти</button>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+
+        <div class="row margined-row">
+            <!-- Таблица с пользователями-->
+            <div class="col-md-3"></div>
+            <div class="col-md-6" id="user-list" >
+                <table class="table table-striped" th:fragment="user-list">
+                    <thead>
+                        <tr>
+                            <th>Имя</th>
+                            <th>Логин</th>
+                            <th>Дата рождения</th>
+                        </tr>
+                    </thead>
+                    <div th:switch="${#lists.isEmpty(users)}">
+                        <tbody th:case="${false}">
+                            <tr th:each="user: ${users}">
+                                <td th:text="${user.getName()}">Name</td>
+                                <td th:text="${user.getUsername()}">username</td>
+                                <td th:text="${user.getBirthday()}">bday</td>
+                            </tr>
+                        </tbody>
+                        <tbody th:case="${true}">
+                            <tr>
+                                <td colspan="3" class="center-text">Пользователей с таким логином нет.</td>
+                            </tr>
+                        </tbody>
+                    </div>
+                </table>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+</body>
+</html>
