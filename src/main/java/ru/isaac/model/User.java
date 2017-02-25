@@ -1,7 +1,16 @@
 package ru.isaac.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
+import ru.isaac.ServerApplication;
+import ru.isaac.security.SecurityConfiguration;
+import ru.isaac.security.UserSecurityService;
 
+import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -20,14 +29,6 @@ public class User {
 
     public User() {
         this.id = UUID.randomUUID().toString();
-    }
-
-    public User(String name, String username, String password, LocalDate birthday) {
-        this();
-        this.name = name;
-        this.username = username;
-        this.password = password;
-        this.birthday = birthday;
     }
 
     public String getId() {
@@ -55,7 +56,9 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        if (password != null) {
+            this.password = SecurityConfiguration.passwordEncoder().encode(password);
+        }
     }
 
     public LocalDate getBirthday() {
