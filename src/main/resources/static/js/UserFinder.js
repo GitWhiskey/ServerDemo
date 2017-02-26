@@ -4,6 +4,7 @@
 $(document).ready(function () {
 
     var findingButton = $("#find-users");
+    var addButton = $("#addDog");
     // Привязка кнопки enter к нажатию на кнопку
     $("#search-input").keypress(function (event) {
         if (event.keyCode == 13) {
@@ -14,5 +15,9 @@ $(document).ready(function () {
     findingButton.click(function () {
         var username =  $("#search-input").val();
         $("#user-list").load("UserList/find?username=" + username);
+    });
+
+    addButton.click(function () {
+        $("#addDogForm").load("UserList/AddUser");
     });
 });

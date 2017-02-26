@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="vendor/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="vendor/js/jquery-3.1.1.js"></script>
+    <script src="js/AddUser.js"></script>
+    <title>List of Users</title>
+</head>
+<body>
+<form class="form-horizontal">
+    <div class="form-group">
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="userName" placeholder="Имя">Имя</input>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="userLogin" placeholder="Логин">Логин</input>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-10">
+            <input type="date" class="form-control" id="dateBrth" placeholder="01.01.2017">Дата рождения</input>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-10">
+            <input type="password" class="form-control" id="userPass" placeholder="Пароль">Пароль</input>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" id="addDogToModel" class="btn btn-default">Добавить Пса</button>
+        </div>
+    </div>
+</form>
+</body>
+</html>

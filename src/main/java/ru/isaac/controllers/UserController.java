@@ -5,7 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.isaac.model.User;
 import ru.isaac.model.UserRepository;
+
+import java.time.LocalDate;
 
 /**
  * Created by Maxon on 24.02.2017.
@@ -27,5 +30,22 @@ public class UserController {
     public String findUsersByUsername(@RequestParam("username") String username, Model model) {
         model.addAttribute("users", repository.findByUsername(username));
         return "UserList :: user-list";
+    }
+
+    @RequestMapping(value = "/add")
+    public String addDog(@RequestParam("userName") String dogName,
+                         @RequestParam("userPass") String dogPass,
+                         @RequestParam("userDate") String dogDateString,
+                         @RequestParam("userLogin") String dogLogin,
+                         Model model) {
+        LocalDate dogDate = LocalDate.parse(dogDateString);
+        repository.addUser(new User(dogName,dogLogin,dogPass,dogDate));
+        model.addAttribute("users", repository.findAll());
+        return "UserList :: user-list";
+    }
+
+    @RequestMapping(value = "/AddUser")
+    public String addUser() {
+        return "AddUser";
     }
 }

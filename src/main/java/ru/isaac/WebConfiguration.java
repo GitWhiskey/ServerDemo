@@ -22,6 +22,4 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
         registry.addViewController("/login").setViewName("LoginPage");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
-
-
 }
