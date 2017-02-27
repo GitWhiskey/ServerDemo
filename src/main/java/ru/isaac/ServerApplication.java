@@ -8,18 +8,26 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import ru.isaac.dao.UserDAO;
+import ru.isaac.dao.UserDAOImpl;
 import ru.isaac.model.User;
 import ru.isaac.model.UserRepository;
 import ru.isaac.security.SecurityConfiguration;
 
 import java.time.LocalDate;
 
+import static java.time.LocalDate.ofEpochDay;
+
 @SpringBootApplication
-@Import({SecurityConfiguration.class, WebConfiguration.class})
+@Import({SecurityConfiguration.class, WebConfiguration.class, DataBaseConfiguration.class})
 public class ServerApplication {
 
 	@Autowired
 	private UserRepository repository;
+
+	// TODO: 28.02.2017 хуй проссыщь 
+	@Autowired
+	private static UserDAO userDAO;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ServerApplication.class, args);
@@ -49,6 +57,8 @@ public class ServerApplication {
             repository.addUser(u1);
             repository.addUser(u2);
             repository.addUser(u3);
+
+			userDAO.addUser(u3);
 		};
 	}
 }

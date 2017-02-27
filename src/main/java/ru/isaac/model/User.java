@@ -3,6 +3,7 @@ package ru.isaac.model;
 import org.springframework.stereotype.Component;
 import ru.isaac.security.SecurityConfiguration;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -12,8 +13,14 @@ import java.util.UUID;
  * Created by Maxon on 24.02.2017.
  */
 @Component
+@Entity
+@Table(name = "User" )
 public class User {
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private String id;
+
     private String name;
     private String username;
     private String password;
