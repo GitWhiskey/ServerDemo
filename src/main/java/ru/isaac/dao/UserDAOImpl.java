@@ -26,14 +26,10 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    @Transactional
     public void addUser(User user) {
-        Session session = this.sessionFactory.openSession();
-        session.getTransaction().begin();
+        Session session = this.sessionFactory.getCurrentSession();
         session.persist(user);
-        session.getTransaction().commit();
         logger.info("User saved successfully, User Details=" + user);
-        session.close();
     }
 
     @Override
@@ -47,13 +43,12 @@ public class UserDAOImpl implements UserDAO {
     @SuppressWarnings("unchecked")
     @Override
     public List<User> listUsers() {
-        Session session = this.sessionFactory.openSession();
+        Session session = this.sessionFactory.getCurrentSession();
         String query = "select * from User";
         List<User> usersList = session.createSQLQuery(query).list();
         for (User user : usersList) {
             logger.info("User List::" + user);
         }
-        session.close();
         return usersList;
     }
 

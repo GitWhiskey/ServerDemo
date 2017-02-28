@@ -8,7 +8,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.StandardEnvironment;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import ru.isaac.model.User;
 import org.hibernate.dialect.MySQLDialect;
 
@@ -17,7 +19,16 @@ import java.util.Properties;
 
 @Configuration
 @ComponentScan
+//@EnableTransactionManagement
 public class DataBaseConfiguration {
+
+    @Autowired
+    @Bean
+    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
+        HibernateTransactionManager hibernateTransactionManager = new HibernateTransactionManager();
+        hibernateTransactionManager.setSessionFactory(sessionFactory);
+        return hibernateTransactionManager;
+    }
 
     @Bean(name = "dataSource")
     public BasicDataSource basicDataSource() {

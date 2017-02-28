@@ -20,14 +20,12 @@ import java.time.LocalDate;
 import static java.time.LocalDate.ofEpochDay;
 
 @SpringBootApplication
-@EnableTransactionManagement
 @Import({SecurityConfiguration.class, WebConfiguration.class, DataBaseConfiguration.class})
 public class ServerApplication {
 
-//	@Autowired
-//	private UserRepository repository;
+	@Autowired
+	private UserRepository repository;
 
-	// TODO: 28.02.2017 хуй проссыщь 
 	@Autowired
 	private UserDAO userDAO;
 
@@ -56,12 +54,13 @@ public class ServerApplication {
 			u3.setPassword("pass3");
 			u3.setBirthday(LocalDate.of(1994, 3, 22));
 
-            //repository.addUser(u1);
+            repository.addUser(u1);
 //            repository.addUser(u2);
 //            repository.addUser(u3);
 
 			userDAO.addUser(u3);
-			System.out.println(userDAO.listUsers());
+			//userDAO.addUser(u2);
+		//	System.out.println(userDAO.listUsers());
 		};
 	}
 }

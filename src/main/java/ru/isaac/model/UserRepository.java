@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 /**
  * Created by Maxon on 24.02.2017.
  */
-//@Repository
+@Repository
 public class UserRepository {
 
     private List<User> users = new ArrayList<>();
