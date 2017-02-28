@@ -32,7 +32,7 @@
         <div class="row margined-row">
             <!-- Таблица с пользователями-->
             <div class="col-md-3"></div>
-            <div class="col-md-6" id="user-list" >
+            <div class="col-md-6" id="user-list">
                 <table class="table table-striped" th:fragment="user-list">
                     <thead>
                         <tr>
@@ -54,23 +54,30 @@
                                 <td colspan="3" class="center-text">Пользователей с таким логином нет.</td>
                             </tr>
                         </tbody>
-                        <tbody>
-                            <tr>
-                                <td><input type="text" class="form-control" id="addName"></input></td>
-                                <td><input type="text" class="form-control" id="addUserName"></input></td>
-                                <td><input type="date" class="form-control" id="addBirthDay"></input></td>
-                            </tr>
-                        </tbody>
                     </div>
                 </table>
             </div>
-            <div class="form-group">
-                <div class="col-md-3" id="addDogForm">
-                    <button id="addDog" class="btn btn-primary">Добавить пса</button>
+        </div>
+            <div class="row margined-row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <td><input type="text" class="form-control" id="addName"></input></td>
+                            <td><input type="text" class="form-control" id="addUserName"></input></td>
+                            <td><input type="date" class="form-control" id="addBirthDay"></input></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
-    </div>
 
+            <!--<div class="form-group">-->
+                <!--<div class="col-md-3" id="addDogForm">-->
+                    <!--<button id="addDog" class="btn btn-primary">Добавить пса</button>-->
+                <!--</div>-->
+            <!--</div>-->
+    </div>
 </body>
 </html>
