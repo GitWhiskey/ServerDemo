@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import ru.isaac.dao.UserDAO;
 import ru.isaac.dao.UserDAOImpl;
 import ru.isaac.model.User;
@@ -19,15 +20,16 @@ import java.time.LocalDate;
 import static java.time.LocalDate.ofEpochDay;
 
 @SpringBootApplication
+@EnableTransactionManagement
 @Import({SecurityConfiguration.class, WebConfiguration.class, DataBaseConfiguration.class})
 public class ServerApplication {
 
-	@Autowired
-	private UserRepository repository;
+//	@Autowired
+//	private UserRepository repository;
 
 	// TODO: 28.02.2017 хуй проссыщь 
 	@Autowired
-	private static UserDAO userDAO;
+	private UserDAO userDAO;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ServerApplication.class, args);
@@ -54,11 +56,12 @@ public class ServerApplication {
 			u3.setPassword("pass3");
 			u3.setBirthday(LocalDate.of(1994, 3, 22));
 
-            repository.addUser(u1);
-            repository.addUser(u2);
-            repository.addUser(u3);
+            //repository.addUser(u1);
+//            repository.addUser(u2);
+//            repository.addUser(u3);
 
 			userDAO.addUser(u3);
+			System.out.println(userDAO.listUsers());
 		};
 	}
 }

@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import ru.isaac.dao.UserDAO;
 import ru.isaac.model.User;
 import ru.isaac.model.UserRepository;
 
@@ -14,12 +15,15 @@ import ru.isaac.model.UserRepository;
 @Service("userDetailsService")
 public class UserSecurityService implements UserDetailsService {
 
+//    @Autowired
+//    private UserRepository userRepository;
+
     @Autowired
-    private UserRepository userRepository;
+    private UserDAO repository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username).stream().findFirst().get();
+        User user = repository.listUsers().stream().findFirst().get();
         return new UserSecurityDetails(user);
     }
 }

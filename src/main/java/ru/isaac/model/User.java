@@ -14,20 +14,25 @@ import java.util.UUID;
  */
 @Component
 @Entity
-@Table(name = "User" )
+@Table(name = "user" )
 public class User {
     @Id
     @Column(name="id")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private String id;
+    private int id;
 
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "birthday")
     private LocalDate birthday;
 
     public User(String name, String username, String password, LocalDate birthday) {
-        this();
         this.name = name;
         this.username = username;
         setPassword(password); // для шифровки
@@ -35,10 +40,10 @@ public class User {
     }
 
     public User() {
-        this.id = UUID.randomUUID().toString();
+     this.id = this.id + 1;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -83,11 +88,12 @@ public class User {
 
         User user = (User) o;
 
-        return id != null ? id.equals(user.id) : user.id == null;
+        return id == user.id;
+
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return id;
     }
 }
