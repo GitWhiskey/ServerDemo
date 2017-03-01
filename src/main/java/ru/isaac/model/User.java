@@ -3,24 +3,38 @@ package ru.isaac.model;
 import org.springframework.stereotype.Component;
 import ru.isaac.security.SecurityConfiguration;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDate;
-import java.util.UUID;
 
 /**
  * Модель пользователя.
- *
+ * <p>
  * Created by Maxon on 24.02.2017.
  */
 @Component
+@Entity
+@Table(name = "user")
 public class User {
-    private String id;
+    @Id
+    @Column(name = "id")
+    private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "birthday")
     private LocalDate birthday;
 
     public User(String name, String username, String password, LocalDate birthday) {
-        this();
         this.name = name;
         this.username = username;
         setPassword(password); // для шифровки
@@ -28,10 +42,9 @@ public class User {
     }
 
     public User() {
-        this.id = UUID.randomUUID().toString();
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -76,11 +89,17 @@ public class User {
 
         User user = (User) o;
 
-        return id != null ? id.equals(user.id) : user.id == null;
+        return id == user.id;
+
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return id;
     }
+
+    public String toString() {
+        return this.id + " " + this.username + " " + this.birthday;
+    }
+
 }
