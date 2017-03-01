@@ -26,8 +26,6 @@ public class UserController {
 
     @RequestMapping("")
     public String getView(Model model) {
-        List<User> list = repository.listUsers();
-        System.out.println(list);
         model.addAttribute("users", repository.listUsers());
         return "UserList";
     }

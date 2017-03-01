@@ -45,8 +45,6 @@ public class UserDAOImpl implements UserDAO {
     public List<User> listUsers() {
         Session session = this.sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(User.class);
-//        String query = "select * from User";
-//        List<User> usersList = session.createQuery(query).list();
         List<User> usersList = criteria.list();
         for (User user : usersList) {
             logger.info("User List::" + user);
