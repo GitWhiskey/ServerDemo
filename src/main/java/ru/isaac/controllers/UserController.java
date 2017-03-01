@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.isaac.dao.UserDAO;
 import ru.isaac.model.User;
-import ru.isaac.model.UserRepository;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Created by Maxon on 24.02.2017.
@@ -26,6 +26,8 @@ public class UserController {
 
     @RequestMapping("")
     public String getView(Model model) {
+        List<User> list = repository.listUsers();
+        System.out.println(list);
         model.addAttribute("users", repository.listUsers());
         return "UserList";
     }
@@ -43,7 +45,7 @@ public class UserController {
                          @RequestParam("userLogin") String dogLogin,
                          Model model) {
         LocalDate dogDate = LocalDate.parse(dogDateString);
-        repository.addUser(new User(dogName,dogLogin,dogPass,dogDate));
+        repository.addUser(new User(dogName, dogLogin, dogPass, dogDate));
         model.addAttribute("users", repository.listUsers());
         return "UserList :: user-list";
     }

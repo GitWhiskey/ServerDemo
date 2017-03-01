@@ -1,12 +1,12 @@
 package ru.isaac.dao;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 import ru.isaac.model.User;
 
@@ -44,8 +44,10 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public List<User> listUsers() {
         Session session = this.sessionFactory.getCurrentSession();
-        String query = "select * from User";
-        List<User> usersList = session.createSQLQuery(query).list();
+        Criteria criteria = session.createCriteria(User.class);
+//        String query = "select * from User";
+//        List<User> usersList = session.createQuery(query).list();
+        List<User> usersList = criteria.list();
         for (User user : usersList) {
             logger.info("User List::" + user);
         }
@@ -64,9 +66,9 @@ public class UserDAOImpl implements UserDAO {
     public void removeUser(int id) {
         Session session = this.sessionFactory.getCurrentSession();
         User user = (User) session.load(User.class, new Integer(id));
-        if(null != user){
+        if (null != user) {
             session.delete(user);
         }
-        logger.info("User deleted successfully, User details="+user);
+        logger.info("User deleted successfully, User details=" + user);
     }
 }

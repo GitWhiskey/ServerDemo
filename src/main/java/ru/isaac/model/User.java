@@ -3,21 +3,23 @@ package ru.isaac.model;
 import org.springframework.stereotype.Component;
 import ru.isaac.security.SecurityConfiguration;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDate;
-import java.util.UUID;
 
 /**
  * Модель пользователя.
- *
+ * <p>
  * Created by Maxon on 24.02.2017.
  */
 @Component
 @Entity
-@Table(name = "user" )
+@Table(name = "user")
 public class User {
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     private int id;
 
     @Column(name = "name")
@@ -40,7 +42,6 @@ public class User {
     }
 
     public User() {
-     this.id = this.id + 1;
     }
 
     public int getId() {
@@ -96,4 +97,9 @@ public class User {
     public int hashCode() {
         return id;
     }
+
+    public String toString() {
+        return this.id + " " + this.username + " " + this.birthday;
+    }
+
 }
