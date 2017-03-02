@@ -11,8 +11,7 @@ $(document).ready(function () {
             findingButton.click();
         }
     });
-
-
+    
     $("#addName").on("keypress",(function(event) {
         if (event.keyCode == 13) {
             addUser();
@@ -30,7 +29,7 @@ $(document).ready(function () {
             addUser();
         }
     }));
-    
+
     //Функция добавления нового пользователя
     function addUser(){
         var dogName = $("#addName").val();

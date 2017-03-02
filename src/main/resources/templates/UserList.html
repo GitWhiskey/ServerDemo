@@ -44,9 +44,9 @@
                     <div th:switch="${#lists.isEmpty(users)}">
                         <tbody th:case="${false}">
                             <tr th:each="user: ${users}">
-                                <td th:text="${user.getName()}">Name</td>
-                                <td th:text="${user.getUsername()}">username</td>
-                                <td th:text="${user.getBirthday()}">bday</td>
+                                <td th:text="${user.getName()}" id="nameInTable">Name</td>
+                                <td th:text="${user.getUsername()}" id="userNameInTable">username</td>
+                                <td th:text="${user.getBirthday()}" id="birthdayInTable">bday</td>
                             </tr>
                         </tbody>
                         <tbody th:case="${true}">
