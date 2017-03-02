@@ -3,6 +3,8 @@ package ru.isaac.dao;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,5 +70,23 @@ public class UserDAOImpl implements UserDAO {
             session.delete(user);
         }
         logger.info("User deleted successfully, User details=" + user);
+    }
+
+    // TODO: 02.03.2017 заменить deprecated method
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<User> findByUsername(String username) {
+        if (username == null || username.isEmpty()) {
+            return listUsers();
+        }
+        else {
+            Session session = this.sessionFactory.getCurrentSession();
+            Criteria criteria = session.createCriteria(User.class);
+            List<User> usersList = criteria.add(Restrictions.like("username", username, MatchMode.START)).list();
+            for (User user : usersList) {
+                logger.info("User List::" + user);
+            }
+            return usersList;
+        }
     }
 }

@@ -33,7 +33,7 @@ public class UserController {
     // TODO: 02.03.2017  реализовать! 
     @RequestMapping(value = "/find")
     public String findUsersByUsername(@RequestParam("username") String username, Model model) {
-        model.addAttribute("users", repository.listUsers());
+        model.addAttribute("users", repository.findByUsername(username));
         return "UserList :: user-list";
     }
 
