@@ -8,19 +8,19 @@ $(document).ready(function () {
 
 
     name.on("keypress",(function(event) {
-        if (event.keyCode == 13) {
+        if (event.keyCode === 13) {
             addUser();
         }
     }));
 
     userName.on("keypress",(function(event) {
-        if (event.keyCode == 13) {
+        if (event.keyCode === 13) {
             addUser();
         }
     }));
 
     brthDay.on("keypress",(function(event) {
-        if (event.keyCode == 13) {
+        if (event.keyCode === 13) {
             addUser();
         }
     }));
@@ -31,7 +31,7 @@ $(document).ready(function () {
         var dogLogin = userName.val();
         var dogDate = brthDay.val();
 
-        if ((dogName != "") && (dogLogin != "") && (dogDate != "")) {
+        if ((dogName !== "") && (dogLogin !== "") && (dogDate !== "")) {
             $("#user-list").load("UserList/add?userName=" + dogName + "&userPass=" + dogLogin +
                 "&userDate="+ dogDate + "&userLogin=" + dogLogin);
             name.val("");

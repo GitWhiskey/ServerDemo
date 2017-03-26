@@ -6,28 +6,27 @@ $(document).ready(function () {
     var findingButton = $("#find-users");
     var addButton = $("#addDog");
     var input = $("#search-input");
-    var action = true;
 
     input.keypress(function (event) {
-        if (event.keyCode == 13) {
+        if (event.keyCode === 13) {
             findingButton.click();
         }
     });
     
     $("#addName").on("keypress",(function(event) {
-        if (event.keyCode == 13) {
+        if (event.keyCode === 13) {
             addUser();
         }
     }));
 
     $("#addUserName").on("keypress",(function(event) {
-        if (event.keyCode == 13) {
+        if (event.keyCode === 13) {
             addUser();
         }
     }));
 
     $("#addBirthDay").on("keypress",(function(event) {
-        if (event.keyCode == 13) {
+        if (event.keyCode === 13) {
             addUser();
         }
     }));
@@ -38,7 +37,7 @@ $(document).ready(function () {
         var dogLogin = $("#addUserName").val();
         var dogDate = $("#addBirthDay").val();
 
-        if ((dogName != "") && (dogLogin != "") && (dogDate != "")) {
+        if ((dogName !== "") && (dogLogin !== "") && (dogDate !== "")) {
             $("#user-list").load("UserList/add?userName=" + dogName + "&userPass=" + dogLogin +
                 "&userDate="+ dogDate + "&userLogin=" + dogLogin);
             $("#addName").val("");

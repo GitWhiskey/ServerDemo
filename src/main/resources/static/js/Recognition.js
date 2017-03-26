@@ -14,7 +14,7 @@ $(document).ready(function () {
         ya.speechkit.recognize({
             // Функция будет вызвана, когда распознавание завершится.
             doneCallback: function(text) {
-                if (text!="")
+                if (text!=="")
                     input.val(text);
                 console.log("Финальный результат распознавания: " + text);
             },
@@ -38,7 +38,7 @@ $(document).ready(function () {
         ya.speechkit.recognize({
             // Функция будет вызвана, когда распознавание завершится.
             doneCallback: function(text) {
-                if (text!="")
+                if (text!=="")
                     name.val(text);
                 console.log("Финальный результат распознавания: " + text);
             },
@@ -59,28 +59,28 @@ $(document).ready(function () {
 
     // Привязка кнопки ctrl к активированию поиска
     input.keydown(function(eventObject){
-        if ((eventObject.which == 17)&&(action === true)) {
+        if ((eventObject.which === 17)&&(action === true)) {
             action = false;
             recognize();
         }
     });
 
     input.keyup(function(eventObject){
-        if (eventObject.which == 17) {
+        if (eventObject.which === 17) {
             action = true;
         }
     });
 
     // Привязка кнопки ctrl к вводу имени
     name.keydown(function(eventObject){
-        if ((eventObject.which == 17)&&(action === true)) {
+        if ((eventObject.which === 17)&&(action === true)) {
             action = false;
             recognizeName();
         }
     });
 
     name.keyup(function(eventObject){
-        if (eventObject.which == 17) {
+        if (eventObject.which === 17) {
             action = true;
         }
     });
